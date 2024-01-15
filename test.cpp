@@ -1,8 +1,41 @@
 #include <iostream>
 #include <vector>
 #include <unistd.h>
+#include <QApplication>
+#include <QProgressBar>
+#include <QTimer>
 
-// Dichiarazioni delle classi Observer e Subject
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+
+    // Creazione della barra di caricamento
+    QProgressBar progressBar;
+    progressBar.setRange(0, 100); // Imposta la gamma da 0 a 100
+    progressBar.show();
+
+    // Creazione di un timer per simulare il progresso del caricamento
+    QTimer timer;
+    int progressValue = 0;
+
+    // Collega il segnale timeout del timer alla lambda function per aggiornare la barra di caricamento
+    QObject::connect(&timer, &QTimer::timeout, [&]() {
+        progressValue += 10;
+        progressBar.setValue(progressValue);
+
+        if (progressValue >= 100) {
+            // Il caricamento è completo, arresta il timer
+            timer.stop();
+        }
+    });
+
+    // Imposta l'intervallo del timer a 500 millisecondi (0,5 secondi)
+    timer.start(500);
+
+    return app.exec();
+}
+
+
+/*/ Dichiarazioni delle classi Observer e Subject
 class Observer;
 class Subject;
 
@@ -56,3 +89,4 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+*/
