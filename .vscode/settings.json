@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/backontrack/Documenti/GitHub/Laboratorio_Programmazione_2023-24",
+            "binaryPath": "/home/backontrack/Documenti/GitHub/Laboratorio_Programmazione_2023-24/test",
+            "binaryArgs": []
+        }
+    ]
+}
