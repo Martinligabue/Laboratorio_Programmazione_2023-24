@@ -1,0 +1,159 @@
+#include <iostream>
+#include <vector>
+#include <unistd.h>
+#include <QApplication>
+#include <QMainWindow>
+#include <QProgressBar>
+
+
+/*int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+
+    setWindowTitle(const QString &title)
+
+    // Creazione della barra di caricamento
+    QProgressBar progressBar;
+    progressBar.setRange(0, 100); 
+    progressBar.show();
+
+    // Creazione di un timer per simulare il progresso del caricamento
+    QTimer timer;
+    int progressValue = 0;
+
+    // Collega il segnale timeout del timer alla lambda function per aggiornare la barra di caricamento
+    QObject::connect(&timer, &QTimer::timeout, [&]() {
+        progressValue += 10;
+        progressBar.setValue(progressValue);
+
+        if (progressValue >= 100) {
+            // Il caricamento è completo, arresta il timer
+            timer.stop();
+        }
+    });
+
+    // Imposta l'intervallo del timer a 500 millisecondi (0,5 secondi)
+    timer.start(500);
+
+    return app.exec();
+}
+*/
+
+// Dichiarazioni delle classi Observer e Subject
+class Observer;
+class Subject;
+
+
+class ObserverInterface : public QMainWindow{
+    Q_OBJECT
+public:
+    Observer();
+    //virtual void update(int percentuale) = 0;
+};
+
+
+
+
+class Observer : public ObserverInterface{
+    public:
+        Observer::Observer(){
+            setWindowTitle("Barra di Progresso");
+            setFixedSize(600, 300);
+            
+        }
+
+
+    /*void update(int percentuale) {
+        /*QProgressBar *barra = new QProgressBar("barra");
+        barra.setRange(0,100);
+        barra.setGeometry(100, 100, 400, 60);
+        barra.setValue(percentuale);
+
+        //std::cout << "percentuale " << percentuale << std::endl;
+    }*/
+
+};
+
+
+
+/*
+class Subject {
+private:
+    int percentuale;
+    std::vector<Observer*> observers;
+
+public:
+    void addObserver(Observer* observer) {
+        observers.push_back(observer);
+    }
+
+    void notifyAll(int percentuale) {
+        for (Observer* observer : observers) {
+            observer->update(percentuale);
+        }
+    }
+
+    void Carica() {
+        for (int i = 0; i < 100; i++) {
+            notifyAll(i);
+            sleep(0.5);
+        }
+    }
+};
+*/
+
+
+int main(int argc, char* argv[]) {
+    std::cout << "Hello, World!" << std::endl;
+    
+
+    QApplication app(argc, argv);
+
+    Observer observer;
+    observer.show();
+    
+
+
+    //QProgressBar observer(&mainWindow);
+    //Subject s;
+    // Create displays
+
+    // Register displays as observers
+    //s.addObserver(&observer);
+
+    //s.Carica();
+    
+    // Layout verticale
+    //Observer observer(&mainWindow);
+   // observer.setRange(0, 100);
+    //observer.setGeometry(100, 100, 400, 60); // Imposta la posizione e le dimensioni
+
+
+    // Visualizzazione della finestra
+    
+
+    return app.exec();
+}
+
+
+("Barra di Progresso");
+            setFixedSize(700, 400);
+            QProgressBar *barra = new QProgressBar;
+            setCentralWidget(barra);
+            barra->setRange(0,100);
+            barra->setGeometry(100, 100, 100, 100 );
+            //barra->setAlignment(Qt::AlignCenter);
+
+
+class barra : public QProgressBar {
+public:
+    barra() {
+        setAlignment(Qt::AlignCenter);
+        setRange(0, 100);
+        setFixedSize(500, 300);
+        //setValue(0);
+    }
+
+    void update(int percentuale) {
+        setValue(percentuale);
+    }
+};

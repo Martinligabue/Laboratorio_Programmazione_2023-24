@@ -1,46 +1,40 @@
-# Makefile for compiling and running test.cpp
-# g++ $(pkg-config --cflags --libs Qt5Widgets) -fPIC -o test test.cpp
+# Makefile for compiling and running main.cpp and Subject.cpp
+# g++ $(pkg-config --cflags --libs Qt5Widgets) -fPIC -o main main.cpp
 # Compiler
 
 CXX = g++
-
 # Compiler flags
-CXXFLAGS = -fPIC $(shell pkg-config --cflags Qt5Widgets)
+CXXFLAGS = -fPIC -I. $(shell pkg-config --cflags Qt5Widgets)
 
 # Linker flags
 LDFLAGS = $(shell pkg-config --libs Qt5Widgets)
 
 # Output executables
-OUTPUT_TEST = test
-OUTPUT_HELLO = hello
+OUTPUT_MAIN = main
 
 # Source files
-SRCS_TEST = test.cpp
-SRCS_HELLO = hello.cpp
+SRCS_MAIN = main.cpp Subject.cpp barra.cpp
+# Header files
+HEADERS = Subject.h barra.h 
 
 # Object files
-OBJS_TEST = $(SRCS_TEST:.cpp=.o)
-OBJS_HELLO = $(SRCS_HELLO:.cpp=.o)
+OBJS_MAIN = $(SRCS_MAIN:.cpp=.o)
 
 # Default target
-all: $(OUTPUT_TEST) $(OUTPUT_HELLO)
+all: $(OUTPUT_MAIN)
 
 # Rule to compile .cpp to .o
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Rule to link object files to executables
-$(OUTPUT_TEST): $(OBJS_TEST)
-	$(CXX) $(OBJS_TEST) -o $(OUTPUT_TEST) $(LDFLAGS)
+# Rule to link object files to executable
+$(OUTPUT_MAIN): $(OBJS_MAIN)
+	$(CXX) $(OBJS_MAIN) -o $(OUTPUT_MAIN) $(LDFLAGS)
 
-$(OUTPUT_HELLO): $(OBJS_HELLO)
-	$(CXX) $(OBJS_HELLO) -o $(OUTPUT_HELLO) $(LDFLAGS)
-
-# Rule to run the executables
-run: $(OUTPUT_TEST) $(OUTPUT_HELLO)
-	./$(OUTPUT_TEST)
-	./$(OUTPUT_HELLO)
+# Rule to run the executable
+run: $(OUTPUT_MAIN)
+	./$(OUTPUT_MAIN)
 
 # Clean up
 clean:
-	rm -f $(OBJS_TEST) $(OBJS_HELLO) $(OUTPUT_TEST) $(OUTPUT_HELLO)
+	rm -f $(OBJS_MAIN) $(OUTPUT_MAIN)
