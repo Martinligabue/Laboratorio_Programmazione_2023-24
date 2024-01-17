@@ -13,7 +13,7 @@ void Subject::notifyAll(int percentuale) {
 }
 
 void Subject::carica() {
-    int contatore = 0;
+        notifyAll(40);
 
     }
 

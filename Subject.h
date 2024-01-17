@@ -8,7 +8,7 @@
 #include "barra.h"
 
 
-class Subject : public QPushButton{
+class Subject{
 
     private:
     int percentuale;
