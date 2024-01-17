@@ -11,14 +11,14 @@ public:
     barra() {
         setAlignment(Qt::AlignCenter);
         setRange(0, 100);
-        setFixedSize(500, 300);
         //setValue(0);
     }
 
+
     void update(int percentuale) {
         setValue(percentuale);
-        
     }
+    
 };
 
 

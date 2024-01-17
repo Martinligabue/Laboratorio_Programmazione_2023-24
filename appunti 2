@@ -1,0 +1,40 @@
+#include <QApplication>
+#include <QMainWindow>
+#include <QTimer>
+#include <QDateTime>
+#include <QLabel>
+#include <QVBoxLayout>
+
+int main(int argc, char *argv[]) {
+    QApplication a(argc, argv);
+
+    QMainWindow mainWindow;
+    QVBoxLayout *layout = new QVBoxLayout(&mainWindow);
+
+    QLabel *label = new QLabel(&mainWindow);
+    layout->addWidget(label);
+
+    int contatore = 0;
+
+    QTimer timer;
+    timer.setInterval(1000);
+
+    QObject::connect(&timer, &QTimer::timeout, [&contatore, &label]() {
+        contatore++;
+
+        QDateTime currentTime = QDateTime::currentDateTime();
+        QString text = QString("Contatore: %1 - Tempo: %2")
+                           .arg(contatore)
+                           .arg(currentTime.toString("hh:mm:ss"));
+
+        label->setText(text);
+
+        
+    });
+
+    timer.start();
+
+    mainWindow.show();
+
+    return a.exec();
+}

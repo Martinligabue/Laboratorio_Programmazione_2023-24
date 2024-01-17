@@ -157,3 +157,38 @@ public:
         setValue(percentuale);
     }
 };
+
+
+
+
+
+
+#ifndef SUBJECT_H
+#define SUBJECT_H
+
+#include <QObject>
+#include <QTimer>
+#include <QDebug>
+#include <vector>
+#include "barra.h"
+
+
+class Subject : public QObject {
+    Q_OBJECT
+
+private:
+    int percentuale;
+    std::vector<barra*> observers;
+    QTimer *tempo;
+
+public:
+    explicit Subject(QObject *parent = nullptr);
+    void addObserver(barra* observer);
+    void notifyAll(int percentuale);
+
+public slots:
+    void carica();
+    void prova();
+};
+
+#endif // SUBJECT_H
