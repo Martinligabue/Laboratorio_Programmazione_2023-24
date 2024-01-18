@@ -1,6 +1,16 @@
 #include "Subject.h"
 #include <QDebug>
 #include <unistd.h>
+#include <QWidget>
+
+
+
+
+Subject::Subject() : QPushButton(){
+    setGeometry(200, 200, 150, 30);
+    setText("Aggiorna il Subject"); 
+}
+
 
 void Subject::addObserver(barra* observer) {
     observers.push_back(observer);
@@ -12,12 +22,8 @@ void Subject::notifyAll(int percentuale) {
     }
 }
 
-void Subject::carica() {
-        sleep(1);
-        notifyAll(40);
-        sleep(2);
-        notifyAll(20);
-
+void Subject::carica(int i) {
+        notifyAll(i);
     }
 
 

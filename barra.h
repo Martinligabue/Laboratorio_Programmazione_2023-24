@@ -11,7 +11,7 @@ public:
     barra() {
         setAlignment(Qt::AlignCenter);
         setRange(0, 100);
-        //setValue(0);
+        setValue(0);
     }
 
 

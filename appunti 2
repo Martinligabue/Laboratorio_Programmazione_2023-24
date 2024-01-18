@@ -38,3 +38,27 @@ int main(int argc, char *argv[]) {
 
     return a.exec();
 }
+
+
+
+
+
+//quello qui sotto è l'unico che funziona!
+
+   QTimer *timer = new QTimer;
+    timer->setInterval(100);
+
+    QObject::connect(timer, &QTimer::timeout, [s](){
+        for (int i=0; i<5; i++){
+            sleep(1);
+            s->carica(i);
+       }
+    });    
+
+    timer->start();
+
+
+
+
+
+
