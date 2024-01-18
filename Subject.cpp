@@ -6,10 +6,7 @@
 
 
 
-Subject::Subject() : QPushButton(){
-    setGeometry(200, 200, 150, 30);
-    setText("Aggiorna il Subject"); 
-}
+Subject::Subject() : QPushButton(){};
 
 
 void Subject::addObserver(barra* observer) {
